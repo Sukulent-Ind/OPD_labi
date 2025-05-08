@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import math as mt
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -11,14 +12,13 @@ def index():
 @app.route('/', methods=['post', 'get'])
 def form():
     if request.method == 'POST':
-        sin_, cos_, tg_, ctg_ = 0, 0, "Не вычисляется", "Не вычисляется"
         val, pers = float(request.form.get('val')), int(request.form.get('pers'))
 
         if request.form['units'] == "degree":
             val = val * mt.pi / 180
 
-        sin_ = round(mt.sin(val), pers)
-        cos_ = round(mt.cos(val), pers)
+        sin_, cos_ = round(mt.sin(val), pers), round(mt.cos(val), pers)
+        tg_, ctg_ = "Не вычисляется", "Не вычисляется"
 
         if cos_:
             tg_ = round(sin_ / cos_, pers)
