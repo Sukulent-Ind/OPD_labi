@@ -12,7 +12,7 @@ def parse():
     print(page.status_code) # смотрим ответ
     soup = BeautifulSoup(page.text, "html.parser") # передаем страницу в bs4
 
-    block = soup.findAll('div', class_="main__content") # находим контейнер с нужным классом
+    block = soup.find_all('div', class_="main__content") # находим контейнер с нужным классом
     description = ''
     for data in block: # проходим циклом по содержимому контейнера
         if data.find('p'): # находим тег <p>
